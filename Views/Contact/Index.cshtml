@@ -1,7 +1,10 @@
+@model BlowOut.Models.Contact
+
 @{
     ViewData["Title"] = "Contact";
 }
+
 <div class="jumbotron">
     <h2>@ViewData["Title"]</h2>
-
+    <p class="phone">@Html.Raw(Model.MessageHtml)</p>
 </div>
