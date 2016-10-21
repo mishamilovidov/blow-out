@@ -1,12 +1,27 @@
 @{
-    ViewData["Title"] = "Blow Out!";
+    ViewData["Title"] = "Home";
 }
 
 <div class="jumbotron">
     <div class="row">
-        <div class="col-md-12">
-            <h2>Welcome to Blow Out!</h2>
-            <p>We blow our competitors out of the water</p>
+        <div class="col-md-12 text-center" style="margin-bottom:25px;">
+            <img style="width:15%;" src="~/img/blowout-logo.png">
+            <h2>BlowOut Instrument Rentals</h2>
+            <p><em>The fastest and easiest place to rent new and used instruments</em></p>
+        </div>
+        <div class="col-md-12 text-center" style="margin-bottom:25px;">
+            <a asp-area="" asp-controller="rentals" asp-action="Index">
+                <button type="button" class="btn btn-info" id="call-to-action">Rent Now!</button>
+            </a>
+        </div>
+        <div class="col-md-8 col-md-offset-2 text-center well"  style="margin-bottom:25px;">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="//www.youtube.com/embed/R0JKCYZ8hng?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <p>"It's easy to play any musical instrument: all you have to do is touch the right key at the right time and the instrument will play itself."</p>
+            <footer class="pull-right"><em>- Johann Sebastian Bach</em></footer>
         </div>
     </div>
 </div>
