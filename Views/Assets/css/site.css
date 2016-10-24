@@ -64,3 +64,32 @@ body {
     margin-bottom:20px;
     margin-top:20px;
 }
+
+.spaced-below {
+    margin-bottom:25px;
+}
+
+.panel-heading a {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.panel-heading a:hover{
+    font-weight: normal;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.panel-heading a:visited{
+    text-decoration: none;
+    color: #333;
+}
+
+.instrument-accordion {
+    margin:0px;
+}
+
+.type-accordion {
+    margin-bottom:25px;
+}
