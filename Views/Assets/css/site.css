@@ -69,6 +69,23 @@ body {
     margin-bottom:25px;
 }
 
+.text-center.rental-text {
+    margin-bottom:70px;
+    margin-top:30px;
+}
+
+span.rent-text {
+    font-size:24px;
+}
+
+.row.rental-items {
+    margin-bottom:30px;
+}
+
+.text-center.sub-text {
+    font-size:12px;
+}
+
 .panel-heading a {
     color: #333;
     font-weight: bold;
@@ -93,3 +110,21 @@ body {
 .type-accordion {
     margin-bottom:25px;
 }
+
+@media (max-width: 768px) {
+      #center-sm-right {
+        text-align: center !important; 
+       } 
+      #center-sm-left {
+        text-align: center !important; 
+       } 
+    }
+
+@media (min-width: 768px) {
+      #center-sm-right {
+        float: right !important; 
+       } 
+       #center-sm-left {
+        float: left !important;  
+       } 
+    }

@@ -3,22 +3,61 @@
 
 @{
     ViewData["Title"] = "Rentals";
+
+    ViewBag.MinNewPrice = 1000000;
+    ViewBag.MaxNewPrice = 0;
+    ViewBag.MinUsedPrice = 1000000;
+    ViewBag.MaxUsedPrice = 0;
+
+    foreach (var item in Model)
+    {
+        ViewBag.RentalType = item.RentalType;
+        ViewBag.InstrumentPrice = item.InstrumentPrice;
+
+        if (@ViewBag.RentalType == "New")
+        {
+            if (@ViewBag.InstrumentPrice < @ViewBag.MinNewPrice)
+            {
+                ViewBag.MinNewPrice = ViewBag.InstrumentPrice;
+            }
+            if (@ViewBag.InstrumentPrice > @ViewBag.MaxNewPrice)
+            {
+                ViewBag.MaxNewPrice = ViewBag.InstrumentPrice;
+            }
+        }
+        if (@ViewBag.RentalType == "Used")
+        {
+            if (@ViewBag.InstrumentPrice < @ViewBag.MinUsedPrice)
+            {
+                ViewBag.MinUsedPrice = ViewBag.InstrumentPrice;
+            }
+            if (@ViewBag.InstrumentPrice > @ViewBag.MaxUsedPrice)
+            {
+                ViewBag.MaxUsedPrice = ViewBag.InstrumentPrice;
+            }
+        }
+    }
 }
 
 <div class="jumbotron">
     <h2>@ViewData["Title"]</h2>
-    <p>Feel free to browse our selection of new and used instruments. The price displayed is the monlthly rental price before taxes and fees. Our rent-to-own program is the best in the area: <b>rent an instrument for 18 months (or the cost equivilant of 18 months) and it's yours to keep forever!</b></p>
+    <p class="text-center rental-text">We make renting instruments a no-brainer:<br><span class="rent-text">Rent an instrument for 18 months<sup>*</sup>, and it's yours to keep...<i>forever!</i></span></p>
 
-    <div class="row">
+    <div class="row rental-items">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="row instrument-accordion">
                 <div class="col-sm-6 type-accordion">
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingOne">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                <h4 class="panel-title">
-                                    New Instrument Rentals
-                                </h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4 class="panel-title" id="center-sm-left">New Instrument Rentals</h4>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4 class="panel-title" id="center-sm-right">$@ViewBag.MinNewPrice.00 - $@ViewBag.MaxNewPrice.00 <i class="indicator glyphicon glyphicon-chevron-right"></i></h4>
+                                    </div>
+                                </div>
                             </a>
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -51,9 +90,14 @@
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingTwo">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h4 class="panel-title">
-                                    Used Instrument Rentals
-                                </h4>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h4 class="panel-title" id="center-sm-left">Used Instrument Rentals</h4>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4 class="panel-title" id="center-sm-right">$@ViewBag.MinUsedPrice.00 - $@ViewBag.MaxUsedPrice.00  <i class="indicator glyphicon glyphicon-chevron-right"></i></h4>
+                                    </div>
+                                </div>
                             </a>
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -87,9 +131,17 @@
 
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center sub-text"><i><sup>*</sup>The cash equivilant of 18 monthly payments is required for instrument ownership to be transfered to a rental customer. Rental payments have an interest APR of 0%.</i></p>
+        </div>
+    </div>
+
      <!-- Modal -->
     @foreach (var item in Model)
     {
+        ViewBag.InstrumentFullPrice = (item.InstrumentPrice) * 18;
+
      <div id="@Html.DisplayFor(modelItem => item.RentalType)@Html.DisplayFor(modelItem => item.InstrumentName)" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -99,11 +151,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12 text-center">
-                            <img src="@Html.DisplayFor(modelItem => item.InstrumentPicture)" width="40%" class="well">
+                        <div class="col-sm-6 text-center">
+                            <img src="@Html.DisplayFor(modelItem => item.InstrumentPicture)" width="70%" class="well">
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>Monthly Price: <span class="pull-right">$@Html.DisplayFor(modelItem => item.InstrumentPrice).00</span></h4>
+                            <h4>Full Price: <span class="pull-right">$@ViewBag.InstrumentFullPrice.00</span></h4>
                         </div>
                     </div>
-                    <p></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
