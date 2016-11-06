@@ -12,11 +12,15 @@ body {
     margin-bottom: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
 }
 
-.container.jumbotron{
+.container .jumbotron{
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
 }
 
 .container-fluid {
@@ -173,4 +177,10 @@ div.alert.alert-danger.contact-alerts {
 
 .modal-footer a:visited{
     text-decoration: none;
+}
+
+@media only screen and (max-width: 374px) {
+
+   .navbar-brand { font-size: 1.3em; }
+
 }

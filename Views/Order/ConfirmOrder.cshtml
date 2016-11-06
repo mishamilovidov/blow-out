@@ -41,7 +41,7 @@
                     <h5>18-Month Total: $@ViewBag.InstrumentFullPrice</h5>
                 </div>
             </div>
-            <form asp-controller="Order" asp-action="PlaceOrder" asp-route-id="@ViewBag.InstrumentId" asp-route-instname="@ViewBag.InstrumentName" asp-route-price="@ViewBag.InstrumentPrice" asp-route-picture="@ViewBag.InstrumentPicture" asp-route-type="@ViewBag.RentalType" asp-route-name="@ViewBag.CustFirstName @ViewBag.CustLastName" asp-route-address="@ViewBag.CustStreetAddress, @ViewBag.CustCity, @ViewBag.CustState @ViewBag.CustZip" asp-route-email="@ViewBag.CustEmail" asp-route-phone="@ViewBag.CustPhone" asp-route-fullprice="@ViewBag.InstrumentFullPrice" asp-route-date="@ViewBag.OrderDate" method="post" class="form-horizontal" role="form">
+            <form asp-controller="order" asp-action="PlaceOrder" asp-route-id="@ViewBag.InstrumentId" asp-route-instname="@ViewBag.InstrumentName" asp-route-price="@ViewBag.InstrumentPrice" asp-route-picture="@ViewBag.InstrumentPicture" asp-route-type="@ViewBag.RentalType" asp-route-name="@ViewBag.CustFirstName @ViewBag.CustLastName" asp-route-address="@ViewBag.CustStreetAddress, @ViewBag.CustCity, @ViewBag.CustState @ViewBag.CustZip" asp-route-email="@ViewBag.CustEmail" asp-route-phone="@ViewBag.CustPhone" asp-route-fullprice="@ViewBag.InstrumentFullPrice" asp-route-date="@ViewBag.OrderDate" method="post" class="form-horizontal" role="form">
                 <div class="form-group row">
                     <div class="col-md-12 hidden">
                          <div class="form-group row">
@@ -63,6 +63,9 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <input type="submit" value="Place Order" id="validate" class="btn btn-primary pull-right" />
+                                <a asp-area="" asp-controller="rentals" asp-action="Index">
+                                    <button type="button" class="btn btn-danger pull-right" style="margin-right:5px;">Cancel Order</button>
+                                </a>
                             </div>
                         </div>
                     </div>
