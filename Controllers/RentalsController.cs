@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlowOut.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace BlowOut.Controllers
 {
@@ -25,6 +26,50 @@ namespace BlowOut.Controllers
                 );
 
             return View(instruments);
+        }
+
+        public IActionResult RequestInformation(string instname, float price, string picture, string type)
+        {
+            ViewBag.InstrumentName = instname;
+            ViewBag.InstrumentPrice = price;
+            ViewBag.InstrumentPicture = picture;
+            ViewBag.RentalType = type;
+
+            return View(new RequestInfo());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> MessageSent(IFormCollection data, string instname, string type)
+        {
+            if (ModelState.IsValid) 
+            {
+                foreach (string description in data.Keys)
+                {
+                    if (description.Equals("Name"))
+                    {
+                        var name = data[description];
+                        ViewBag.Name = name;
+                    }
+                    if (description.Equals("Email"))
+                    {
+                        var email = data[description];
+                        ViewBag.Email = email;
+                    }
+                    if (description.Equals("Message"))
+                    {
+                        var message = data[description];
+                        ViewBag.Message = message;
+                    }
+                }
+
+                ViewBag.InstrumentName = instname;
+                ViewBag.RentalType = type;
+
+                return View();
+            }
+
+            return RedirectToAction("Index");
+            
         }
     }
 }

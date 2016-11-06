@@ -1,0 +1,81 @@
+@model BlowOut.Models.Orders
+
+@{
+    ViewData["Title"] = "Review Order";
+
+    ViewBag.InstrumentFullPrice = (ViewBag.InstrumentPrice) * 18;
+    ViewBag.OrderDate = DateTime.Now;
+}
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="sub-text pull-right">Customer Infomation <i class="indicator glyphicon glyphicon-chevron-right"></i>  <b style="color:rgb(55,123,181)"><i>Review Order</i></b>  <i class="indicator glyphicon glyphicon-chevron-right"></i>  Order Complete</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 id="center-sm-left">@ViewData["Title"] - @ViewBag.RentalType @ViewBag.InstrumentName</h2>
+        </div>
+        <div class="col-sm-6">
+            <h2 id="center-sm-right">$@ViewBag.InstrumentPrice.00<sup>*</sup></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center product">
+            <img src="@ViewBag.InstrumentPicture" width="80%" class="well">
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Customer Infomation:</h3>
+                    <h5>Name: @ViewBag.CustFirstName @ViewBag.CustLastName</h5>
+                    <h5>Address: @ViewBag.CustStreetAddress, @ViewBag.CustCity, @ViewBag.CustState @ViewBag.CustZip</h5>
+                    <h5>Email: @ViewBag.CustEmail</h5>
+                    <h5>Phone: @ViewBag.CustPhone</h5>
+                </div>
+                <div class="col-md-6">
+                    <h3>Order Infomation:</h3>
+                    <h5>Instrument: @ViewBag.InstrumentName</h5>
+                    <h5>Rental Type: @ViewBag.RentalType</h5>
+                    <h5>18-Month Total: $@ViewBag.InstrumentFullPrice</h5>
+                </div>
+            </div>
+            <form asp-controller="order" asp-action="PlaceOrder" asp-route-id="@ViewBag.InstrumentId" asp-route-instname="@ViewBag.InstrumentName" asp-route-price="@ViewBag.InstrumentPrice" asp-route-picture="@ViewBag.InstrumentPicture" asp-route-type="@ViewBag.RentalType" asp-route-name="@ViewBag.CustFirstName @ViewBag.CustLastName" asp-route-address="@ViewBag.CustStreetAddress, @ViewBag.CustCity, @ViewBag.CustState @ViewBag.CustZip" asp-route-email="@ViewBag.CustEmail" asp-route-phone="@ViewBag.CustPhone" asp-route-fullprice="@ViewBag.InstrumentFullPrice" asp-route-date="@ViewBag.OrderDate" method="post" class="form-horizontal" role="form">
+                <div class="form-group row">
+                    <div class="col-md-12 hidden">
+                         <div class="form-group row">
+                             <div class="col-md-6">
+                                <label asp-for="OrderDate" class="control-label">Rental:</label>
+                                <input asp-for="OrderDate" class="form-control" type="text" value="@ViewBag.OrderDate" />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="InstrumentId" class="control-label">Instrument ID:</label>
+                                <input asp-for="InstrumentId" class="form-control" type="text" value="@ViewBag.InstrumentId" />
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="CustomerId" class="control-label">Customer ID:</label>
+                                <input asp-for="CustomerId" class="form-control" type="text" value="@ViewBag.CustomerId" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="Place Order" id="validate" class="btn btn-primary pull-right" />
+                                <a asp-area="" asp-controller="rentals" asp-action="Index">
+                                    <button type="button" class="btn btn-danger pull-right" style="margin-right:5px;">Cancel Order</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <p class="text-center sub-text"><i><sup>*</sup>This price reflects the monthly payment amount. The cash equivilant of 18 monthly payments is required for instrument ownership to be transfered to a rental customer. Rental payments have an interest APR of 0%.</i></p>
+        </div>
+    </div>
+</div>

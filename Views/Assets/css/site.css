@@ -1,18 +1,26 @@
 body {
-    padding-top: 50px;
+    padding-top: 30px;
     padding-bottom: 20px;
-}
-
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .navbar-brand {
     font-size: 1.8em;
     font-weight: bold;
+}
+
+.navbar {
+    margin-bottom: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+.container .jumbotron{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
 }
 
 .container-fluid {
@@ -128,3 +136,51 @@ span.rent-text {
         float: left !important;  
        } 
     }
+
+.form-horizontal .control-label {
+    margin-bottom: 5px;
+}
+
+div.alert.alert-danger.contact-alerts {
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-top:5px;
+}
+
+.field-validation-error {
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.founder-img {
+    padding: 30px;
+}
+
+.our-history-text {
+    padding-top: 10px;
+}
+
+#model-footer-buttons {
+    margin-bottom: 10px;
+}
+
+.modal-footer a:hover{
+    text-decoration: none;
+}
+
+.modal-footer a:visited{
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 374px) {
+
+   .navbar-brand { font-size: 1.3em; }
+
+}
