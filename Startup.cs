@@ -73,6 +73,14 @@ namespace BlowOut
                     template: "{controller=Rentals}/{action=Index}/{id?}");
 
                 routes.MapRoute(
+                    name: "requestinfo",
+                    template: "{controller=Rentals}/{action=RequestInformation}/{id?}");
+
+                routes.MapRoute(
+                    name: "about",
+                    template: "{controller=About}/{action=Index}/{id?}");
+
+                routes.MapRoute(
                     name: "contact",
                     template: "{controller=Contact}/{action=Index}/{id?}");
 

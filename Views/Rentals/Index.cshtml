@@ -141,6 +141,11 @@
     @foreach (var item in Model)
     {
         ViewBag.InstrumentFullPrice = (item.InstrumentPrice) * 18;
+        ViewBag.InstrumentId = item.InstrumentId;
+        ViewBag.InstrumentName = item.InstrumentName;
+        ViewBag.InstrumentPrice = item.InstrumentPrice;
+        ViewBag.InstrumentPicture = item.InstrumentPicture;
+        ViewBag.RentalType = item.RentalType;
 
      <div id="@Html.DisplayFor(modelItem => item.RentalType)@Html.DisplayFor(modelItem => item.InstrumentName)" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -159,9 +164,19 @@
                             <h4>Full Price: <span class="pull-right">$@ViewBag.InstrumentFullPrice.00</span></h4>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a asp-area="" asp-controller="rentals" asp-action="RequestInformation" asp-route-id="@ViewBag.InstrumentId" asp-route-instname="@ViewBag.InstrumentName" asp-route-price="@ViewBag.InstrumentPrice" asp-route-picture="@ViewBag.InstrumentPicture" asp-route-type="@ViewBag.RentalType">
+                            <button type="submit" class="btn btn-primary" id="model-footer-buttons">Request More Information</button>
+                    </a>
+                    <a asp-area="" asp-controller="order" asp-action="Index" asp-route-id="@ViewBag.InstrumentId" asp-route-instname="@ViewBag.InstrumentName" asp-route-price="@ViewBag.InstrumentPrice" asp-route-picture="@ViewBag.InstrumentPicture" asp-route-type="@ViewBag.RentalType">
+                        <button type="submit" class="btn btn-success" id="model-footer-buttons">Proceed to Rent</button>
+                    </a>
                 </div>
             </div>
         </div>

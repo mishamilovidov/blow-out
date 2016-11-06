@@ -1,0 +1,96 @@
+@model BlowOut.Models.Customers
+
+@{
+    ViewData["Title"] = "Rental Order";
+}
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-12">
+            <span class="sub-text pull-right"><b style="color:rgb(55,123,181)"><i>Customer Infomation</i></b>  <i class="indicator glyphicon glyphicon-chevron-right"></i>  Review Order  <i class="indicator glyphicon glyphicon-chevron-right"></i>  Order Complete</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <h2 id="center-sm-left">@ViewData["Title"] - @ViewBag.RentalType @ViewBag.InstrumentName</h2>
+        </div>
+        <div class="col-sm-6">
+            <h2 id="center-sm-right">$@ViewBag.InstrumentPrice.00<sup>*</sup></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center product">
+            <img src="@ViewBag.InstrumentPicture" width="80%" class="well">
+        </div>
+        <div class="col-md-8">
+            <form asp-controller="Order" asp-action="ConfirmOrder" asp-route-id="@ViewBag.InstrumentId" asp-route-instname="@ViewBag.InstrumentName" asp-route-price="@ViewBag.InstrumentPrice" asp-route-picture="@ViewBag.InstrumentPicture" asp-route-type="@ViewBag.RentalType" method="post" class="form-horizontal" role="form">
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label asp-for="CustFirstName" class="control-label">First Name:</label>
+                                <input asp-for="CustFirstName" class="form-control" />
+                                <b><span asp-validation-for="CustLastName" class="text-danger"></span></b>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="CustLastName" class="control-label">Last Name:</label>
+                                <input asp-for="CustLastName" class="form-control" />
+                                <b><span asp-validation-for="CustLastName" class="text-danger"></span></b>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label asp-for="CustStreetAddress" class="control-label">Street Address:</label>
+                                <input asp-for="CustStreetAddress" class="form-control" />
+                                <b><span asp-validation-for="CustStreetAddress" class="text-danger"></span></b>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label asp-for="CustCity" class="control-label">City:</label>
+                                <input asp-for="CustCity" class="form-control" />
+                                <b><span asp-validation-for="CustCity" class="text-danger"></span></b>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label asp-for="CustState" class="control-label">State:</label>
+                                <input asp-for="CustState" class="form-control" />
+                                <b><span asp-validation-for="CustState" class="text-danger"></span></b>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="CustZip" class="control-label">Zip Code:</label>
+                                <input asp-for="CustZip" class="form-control" type="text" />
+                                <b><span asp-validation-for="CustZip" class="text-danger"></span></b>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <div class="col-md-6">
+                                <label asp-for="CustEmail" class="control-label">Email:</label>
+                                <input asp-for="CustEmail" class="form-control" type="email" />
+                                <b><span asp-validation-for="CustEmail" class="text-danger"></span></b>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="CustPhone" class="control-label">Phone Number:</label>
+                                <input asp-for="CustPhone" class="form-control" type="tel" />
+                                <b><span asp-validation-for="CustPhone" class="text-danger"></span></b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="Continue" id="validate" class="btn btn-primary pull-right" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <p class="text-center sub-text"><i><sup>*</sup>This price reflects the monthly payment amount. The cash equivilant of 18 monthly payments is required for instrument ownership to be transfered to a rental customer. Rental payments have an interest APR of 0%.</i></p>
+        </div>
+    </div>
+</div>

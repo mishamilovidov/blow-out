@@ -14,6 +14,6 @@ namespace BlowOut.Models
     	public int RentalTypeId { get; set; }
     	public string RentalType { get; set; }
     	public int InstrumentPictureId { get; set; }
-    	public string InstrumentPicture { get; set; }  	
+    	public string InstrumentPicture { get; set; }
 	}
 }

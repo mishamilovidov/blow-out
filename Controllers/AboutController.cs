@@ -6,14 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlowOut.Controllers
 {
-    public class HomeController : Controller
+    public class AboutController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Error()
         {
             return View();
         }

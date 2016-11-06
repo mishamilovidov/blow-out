@@ -1,5 +1,10 @@
-using BlowOut.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using BlowOut.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace BlowOut.Controllers
 {
@@ -8,22 +13,44 @@ namespace BlowOut.Controllers
 
         public IActionResult Index()
         {
-            var contact = new Contact()
-            {
-                MessageHtml = "Please call Support at <a href=\"tel:801-555-1212\">801-555-1212</a>. Thank you!"
-            };
-
-            return View(contact);
+            return View(new Contact());
         }
 
-        public IActionResult email(string name, string email) 
+        // Capture Information from Contact Form and display confirmation page View Controller
+        [HttpPost]
+        public async Task<IActionResult> MessageSent(IFormCollection data)
         {
-            var emailsent = new Email()
+            if (ModelState.IsValid) 
             {
-                MessageHtml = string.Concat("Thank you " + name + ". We will send an email to " + email + ".")
-            };
+                foreach (string description in data.Keys)
+                {
+                    if (description.Equals("Name"))
+                    {
+                        var name = data[description];
+                        ViewBag.Name = name;
+                    }
+                    if (description.Equals("Email"))
+                    {
+                        var email = data[description];
+                        ViewBag.Email = email;
+                    }
+                    if (description.Equals("Subject"))
+                    {
+                        var subject = data[description];
+                        ViewBag.Subject = subject;
+                    }
+                    if (description.Equals("Message"))
+                    {
+                        var message = data[description];
+                        ViewBag.Message = message;
+                    }
+                }
 
-            return View(emailsent);
+                return View();
+            }
+
+            return RedirectToAction("Index");
+            
         }
 
     }

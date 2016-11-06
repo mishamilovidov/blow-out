@@ -4,16 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BlowOut.Models
 {
-    public partial class Contact
+    public partial class RequestInfo
     {
+
         [Required(ErrorMessage = "Your name is required.")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Your email is required."), EmailAddress]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "A message subject is required.")]
-        public string Subject { get; set; }
         
         [Required(ErrorMessage = "A message is required.")]
         public string Message { get; set;}
