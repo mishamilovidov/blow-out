@@ -41,7 +41,8 @@ namespace BlowOut.Models
 
         [Required(ErrorMessage = "Your phone number is required.")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
+        // [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
+        [RegularExpression(@"^\(?([0-9]{3})\)[ ]([0-9]{3})[-]([0-9]{4})$", ErrorMessage = "Phone Number must be entered in this format: (555) 555-5555")]
         public string CustPhone { get; set; }
 
         public virtual ICollection<Orders> Orders { get; set; }
