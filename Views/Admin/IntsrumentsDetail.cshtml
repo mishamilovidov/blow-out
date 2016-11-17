@@ -1,0 +1,64 @@
+@model IEnumerable<BlowOutRentalsPrep.Models.InstrumentDetails>
+
+@{
+    ViewData["Title"] = "Instruments";
+}
+
+<div class="jumbotron">
+
+    <ol class="breadcrumb">
+        <li><a asp-area="" asp-controller="admin" asp-action="Index">Admin Dashboard</a></li>
+        <li class="active">@ViewData["Title"]</li>
+    </ol>
+    
+    <h2 class="customer-title">@ViewData["Title"]</h2>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="row instrument-accordion">
+            @foreach (var item in Model)
+            {
+                ViewBag.InstrumentId = item.InstrumentId.ToString();
+                ViewBag.collapseInstrumentId = "collapse" + ViewBag.InstrumentId;
+                ViewBag.headingInstrumentId = "heading" + ViewBag.InstrumentId;
+
+                <div class="col-md-4 type-accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="@ViewBag.headingInstrumentId">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#@ViewBag.collapseInstrumentId" aria-expanded="false" aria-controls="@ViewBag.collapseInstrumentId">
+                                <h4 class="panel-title">
+                                    <span style="color:#31b0d5;">@Html.DisplayFor(modelItem => item.RentalType)</span> -  @Html.DisplayFor(modelItem => item.InstrumentName) <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+                                </h4>
+                            </a>
+                        </div>
+                        <div id="@ViewBag.collapseInstrumentId" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@ViewBag.headingInstrumentId">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table">  
+                                            <tr>
+                                                <td>Instrument:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.InstrumentName)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Monthly Price:</td>
+                                                <td>$@Html.DisplayFor(modelItem => item.InstrumentPrice).00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Rental Type:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.RentalType)</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <img src="@Html.DisplayFor(modelItem => item.InstrumentPicture)" width="50%" class="well">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div> 
+
+</div>

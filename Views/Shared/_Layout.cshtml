@@ -1,23 +1,32 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BlowOutRentalsPrep.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BlowOut Instrument Rentals</title>
+    <title>@ViewData["Title"] - Blow Out Instrument Rentals</title>
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+    
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
     <div class="container body-content">
@@ -34,18 +43,46 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a asp-area="" asp-controller="home" asp-action="Index">Home</a></li>
                         <li><a asp-area="" asp-controller="rentals" asp-action="Index">Rentals</a></li>
                         <li><a asp-area="" asp-controller="about" asp-action="Index">About</a></li>
                         <li><a asp-area="" asp-controller="contact" asp-action="Index">Contact</a></li>
+                        @if (SignInManager.IsSignedIn(User))
+                        {                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin Dashboard <span class="caret" style="margin-left:5px;"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-area="" asp-controller="admin" asp-action="Index">Overview</a></li>
+                                    <li><a asp-area="" asp-controller="admin" asp-action="CustomersDetail">Customers</a></li>
+                                    <li><a asp-area="" asp-controller="admin" asp-action="OrdersDetail">Orders</a></li>
+                                    <li><a asp-area="" asp-controller="admin" asp-action="IntsrumentsDetail">Instruments</a></li>
+                                    <li><a asp-area="" asp-controller="Manage" asp-action="Index">Your Account</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" onclick="$(this).closest('form').submit()">Log off <i class="glyphicon glyphicon-log-out" style="margin-left:5px;"></i></a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-area="" asp-controller="Account" asp-action="Login"><i class="glyphicon glyphicon-log-in" style="margin-right:5px;"></i> Login</a></li>
+                            <!--<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                                    <li><a asp-area="" asp-controller="Account" asp-action="Register">Create Account</a></li>
+                                </ul>
+                            </li>-->
+                        }
                     </ul>
+                    </form>
+                    <!--@await Html.PartialAsync("_LoginPartial")-->
                 </div>
             </div>
         </nav>
 
-        @RenderBody()      
-          
+        @RenderBody()
+
     </div>
     <footer>
         <p class="text-center">&copy; 2016 - Blow Out Rentals</p>

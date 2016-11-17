@@ -1,0 +1,119 @@
+@model IEnumerable<BlowOutRentalsPrep.Models.OrderDetails>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="jumbotron">
+
+    <ol class="breadcrumb">
+        <li><a asp-area="" asp-controller="admin" asp-action="Index">Admin Dashboard</a></li>
+        <li class="active">@ViewData["Title"]</li>
+    </ol>
+    
+    <h2 class="customer-title">@ViewData["Title"]</h2>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="row instrument-accordion">
+            @foreach (var item in Model)
+            {
+                ViewBag.OrderNumberInt = item.OrderNumber;
+                ViewBag.OrderNumber = item.OrderNumber.ToString();
+                ViewBag.collapseOrderNumber = "collapse" + ViewBag.OrderNumber;
+                ViewBag.headingOrderNumber = "heading" + ViewBag.OrderNumber;
+
+                <div class="col-md-6 type-accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="@ViewBag.headingOrderNumber">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#@ViewBag.collapseOrderNumber" aria-expanded="false" aria-controls="@ViewBag.collapseOrderNumber">
+                                <h4 class="panel-title">
+                                    <span style="color:#31b0d5;">Order #@Html.DisplayFor(modelItem => item.OrderNumber)</span> -  @Html.DisplayFor(modelItem => item.OrderDate) <i class="indicator glyphicon glyphicon-chevron-right pull-right"></i>
+                                </h4>
+                            </a>
+                        </div>
+                        <div id="@ViewBag.collapseOrderNumber" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@ViewBag.headingOrderNumber">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table">  
+                                            <tr>
+                                                <td>Order Number:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.OrderNumber)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Order Date:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Customer ID:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.CustomerId)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>First Name:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.CustFirstName)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Last Name:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.CustLastName)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Instrument Ordered:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.InstrumentName)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Instrument Monthly Price:</td>
+                                                <td>$@Html.DisplayFor(modelItem => item.InstrumentPrice).00</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Rental Type:</td>
+                                                <td>@Html.DisplayFor(modelItem => item.RentalType)</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <img src="@Html.DisplayFor(modelItem => item.InstrumentPicture)" width="50%" class="well">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                            <!--<div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.OrderNumber)-edit">Edit</button>
+                                            </div>-->
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@Html.DisplayFor(modelItem => item.OrderNumber)-cancel">Cancel Order</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!--Cancel Confirmation Modal-->
+    @foreach (var item in Model)
+    {
+        ViewBag.OrderNumber = item.OrderNumber;
+
+        <div id="@Html.DisplayFor(modelItem => item.OrderNumber)-cancel" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"><span style="color:#31b0d5;">Order #@Html.DisplayFor(modelItem => item.OrderNumber)</span> - @Html.DisplayFor(modelItem => item.OrderDate)</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to cancel this order?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form asp-action="CancelOrder" asp-route-id="@ViewBag.OrderNumber">
+                            <input type="submit" value="Cancel Order" class="btn btn-danger">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

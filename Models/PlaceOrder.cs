@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlowOut.Models
+namespace BlowOutRentalsPrep.Models
 {
 	public class PlaceOrder
 	{

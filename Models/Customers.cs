@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlowOut.Models
+namespace BlowOutRentalsPrep.Models
 {
     public partial class Customers
     {
@@ -44,6 +44,8 @@ namespace BlowOut.Models
         // [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
         [RegularExpression(@"^\(?([0-9]{3})\)[ ]([0-9]{3})[-]([0-9]{4})$", ErrorMessage = "Phone Number must be entered in this format: (555) 555-5555")]
         public string CustPhone { get; set; }
+        
+        public bool? CustActive { get; set; }
 
         public virtual ICollection<Orders> Orders { get; set; }
     }
