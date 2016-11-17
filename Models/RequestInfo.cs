@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlowOut.Models
+namespace BlowOutRentalsPrep.Models
 {
     public partial class RequestInfo
     {

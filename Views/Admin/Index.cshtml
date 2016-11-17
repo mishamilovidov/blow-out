@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="jumbotron">
+    <h2>@ViewData["Title"]</h2>
+
+    <div class="row text-center" style="margin-top:40px;">
+        <div class="col-md-4 dashboard-link" style="margin-top:20px;">
+            <a asp-area="" asp-controller="admin" asp-action="CustomersDetail">
+                <i class="fa fa-users fa-5x" style=""></i>
+                <h3>Customers</h3>
+            </a>
+        </div>
+        <div class="col-md-4 dashboard-link" style="margin-top:20px;">
+            <a asp-area="" asp-controller="admin" asp-action="OrdersDetail">
+                <i class="fa fa-shopping-bag fa-5x"></i>
+                <h3>Orders</h3>
+            </a>
+        </div>
+        <div class="col-md-4 dashboard-link" style="margin-top:20px;">
+            <a asp-area="" asp-controller="admin" asp-action="IntsrumentsDetail">
+                <i class="fa fa-music fa-5x"></i>
+                <h3>Instruments</h3>
+            </a>
+        </div>
+    </div>
+
+</div>

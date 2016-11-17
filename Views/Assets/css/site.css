@@ -1,4 +1,4 @@
-body {
+﻿body {
     padding-top: 30px;
     padding-bottom: 20px;
 }
@@ -125,7 +125,7 @@ span.rent-text {
        } 
       #center-sm-left {
         text-align: center !important; 
-       } 
+       }
     }
 
 @media (min-width: 768px) {
@@ -182,5 +182,70 @@ div.alert.alert-danger.contact-alerts {
 @media only screen and (max-width: 374px) {
 
    .navbar-brand { font-size: 1.3em; }
+   #button-group-text { font-size: 11px; }
+   #email { font-size: 11px; }
+   #customer-panel-title{ font-size: 13px; }
+}
 
+@media only screen and (max-width: 991px) {
+
+   .space-above { margin-top: 10px; }
+
+}
+
+.fa {
+    color:#31b0d5;
+}
+
+.dashboard-link a {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.dashboard-link a:hover{
+    font-weight: normal;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.dashboard-link a:visited{
+    text-decoration: none;
+    color: #333;
+}
+
+.no-padding {
+    padding:0;
+}
+
+.customer-title {
+    margin-bottom: 25px;
+}
+
+.breadcrumb {
+    /*margin-left: -20px;
+    margin-top: -20px;*/
+    background-color: transparent;
+}
+
+.breadcrumb>li+li:before {
+    content: "\007C\00a0";
+}
+
+.breadcrumb li a {
+    color: #333;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.breadcrumb li a:hover {
+    font-weight: bold;
+    text-decoration: none;
+    /*font-size: 16px;*/
+}
+
+.breadcrumb li a:visited {
+    color: #333;
+    font-weight: normal;
+    text-decoration: none;
 }

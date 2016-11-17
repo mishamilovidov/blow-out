@@ -1,4 +1,4 @@
-//Script for glyphicon chevron toggle on Rental View
+﻿//Script for glyphicon chevron toggle on Rental View
 function toggleChevron(e) {
     $(e.target)
         .prev('.panel-heading')

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using BlowOut.Models;
+using BlowOutRentalsPrep.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 
-namespace BlowOut.Controllers
+namespace BlowOutRentalsPrep.Controllers
 {
     public class OrderController : Controller
     {
-        private BlowOutContext _context;
+        private BlowOutRentalsContext _context;
 
-    	public OrderController(BlowOutContext context)
+    	public OrderController(BlowOutRentalsContext context)
     	{
         	_context = context;
     	}

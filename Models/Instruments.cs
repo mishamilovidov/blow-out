@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace BlowOut.Models
+namespace BlowOutRentalsPrep.Models
 {
     public partial class Instruments
     {
@@ -21,6 +21,3 @@ namespace BlowOut.Models
         public virtual RentalTypes RentalType { get; set; }
     }
 }
-
-
-
